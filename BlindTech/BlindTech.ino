@@ -60,6 +60,7 @@ long detectFR()
   Serial.print("Front: ");
   Serial.print(cm);
   Serial.println(" cm");
+  return cm;
 }
 
 long detectRE()
@@ -76,6 +77,7 @@ long detectRE()
   Serial.print("Back: ");
   Serial.print(cm);
   Serial.println(" cm");
+  return cm;
 }
 
 long microsecondsToCentimeters(long microseconds) 
