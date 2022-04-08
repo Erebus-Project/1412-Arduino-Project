@@ -43,3 +43,23 @@ void loop()
   Serial.println("Loop");
   delay(1000);
 }
+
+long detect()
+{
+  long duration, cm;
+  pinMode(FRpingPin, OUTPUT);
+  digitalWrite(FRpingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(FRpingPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(FRpingPin, LOW);
+  duration = pulseIn(FRechoPin, HIGH);
+  cm = microsecondsToCentimeters(duration);
+  Serial.print(cm);
+  Serial.println(" cm");
+}
+
+long microsecondsToCentimeters(long microseconds) 
+{
+   return microseconds / 29 / 2;
+}
