@@ -5,8 +5,8 @@
 
 #define FRechoPin 4 //Front echo pin
 #define FRpingPin 2 //Front Trigger pin
-#define REechoPin 3 //Back echo pin
-#define REpingPin 5 //Back ping pin
+#define REechoPin 5 //Back echo pin
+#define REpingPin 3 //Back ping pin
 #define IRLeft 10   //IR out pin left
 #define IRRight 8   //IR out pin right
 #define VMFront A0  //Front Vibrator motor pin
@@ -41,6 +41,8 @@ void setup()
 void loop()
 {
   Serial.println("Loop");
+  detectFR();
+  detectRE();
   delay(1000);
 }
 
