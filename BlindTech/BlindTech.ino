@@ -41,9 +41,15 @@ void setup()
 void loop()
 {
   Serial.println("Loop");
-  detectFR();
-  detectRE();
+  long cmFR = detectFR();
+  long cmRE = detectRE();
+
+  if(cmFR > 40)
+  {
+    
+  }
   delay(1000);
+  
 }
 
 long detectFR()
@@ -83,4 +89,9 @@ long detectRE()
 long microsecondsToCentimeters(long microseconds) 
 {
    return microseconds / 29 / 2;
+}
+
+int buzzlevel(cm)
+{
+  int BL = NULL;
 }
