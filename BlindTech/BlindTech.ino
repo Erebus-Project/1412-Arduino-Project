@@ -5,6 +5,8 @@
 
 #define FRechoPin 4 //Front echo pin
 #define FRpingPin 2 //Front Trigger pin
+#define REechoPin 3 //Back echo pin
+#define REpingpin 5 //Back ping pin
 
 bool DEBUG = false;
 
