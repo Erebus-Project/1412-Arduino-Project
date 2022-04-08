@@ -55,6 +55,7 @@ long detectFR()
   digitalWrite(FRpingPin, LOW);
   duration = pulseIn(FRechoPin, HIGH);
   cm = microsecondsToCentimeters(duration);
+  Serial.print("Front: ");
   Serial.print(cm);
   Serial.println(" cm");
 }
@@ -70,6 +71,7 @@ long detectRE()
   digitalWrite(REpingPin, LOW);
   duration = pulseIn(REechoPin, HIGH);
   cm = microsecondsToCentimeters(duration);
+  Serial.print("Back: ");
   Serial.print(cm);
   Serial.println(" cm");
 }
