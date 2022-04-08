@@ -44,7 +44,7 @@ void loop()
   delay(1000);
 }
 
-long detect()
+long detectFR()
 {
   long duration, cm;
   pinMode(FRpingPin, OUTPUT);
@@ -54,6 +54,21 @@ long detect()
   delayMicroseconds(10);
   digitalWrite(FRpingPin, LOW);
   duration = pulseIn(FRechoPin, HIGH);
+  cm = microsecondsToCentimeters(duration);
+  Serial.print(cm);
+  Serial.println(" cm");
+}
+
+long detectRE()
+{
+  long duration, cm;
+  pinMode(REpingPin, OUTPUT);
+  digitalWrite(REpingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(REpingPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(REpingPin, LOW);
+  duration = pulseIn(REechoPin, HIGH);
   cm = microsecondsToCentimeters(duration);
   Serial.print(cm);
   Serial.println(" cm");
