@@ -1,5 +1,10 @@
 # 1412-Arduino-Project
 
+	Code Lead: Caleb Lochner
+	Hardware Lead: Selvin Hernandez
+	Documentation Lead: Edwin Ventura
+	Project Manager: Mateo Riojas
+
 Ultrasonic Sensor Pins
   Front
     Pin 2 - Trigger Pin
