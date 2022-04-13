@@ -1,6 +1,6 @@
 /*
  * Author: Caleb Lochner
- * Version 0.0.6 A
+ * Version 0.0.8 A
  */
 
 #define FRechoPin 4 //Front echo pin
@@ -44,12 +44,23 @@ void loop()
   long cmFR = detectFR();
   long cmRE = detectRE();
 
-  if(cmFR > 40)
+  if(cmFR < 40)
   {
-    
+    analogWrite(VMFront, buzzlevel(cmFR));
   }
-  delay(1000);
+  else
+  {
+    analogWrite(VMFront, 0);
+  }
   
+  if(cmRE < 40)
+  {
+    analogWrite(VMBack, buzzlevel(cmRE));
+  }
+  else
+  {
+    analogWrite(VMBack, 0);
+  }  
 }
 
 long detectFR()
@@ -91,7 +102,11 @@ long microsecondsToCentimeters(long microseconds)
    return microseconds / 29 / 2;
 }
 
-int buzzlevel(cm)
+int buzzlevel(long cm)
 {
-  int BL = NULL;
+  double BL = 0.0;
+  BL = (0.057 * ( cm * cm) - (16.586 * cm) + 1072.2);
+  int level = (int) BL;
+  Serial.println(level);
+  return level;
 }
