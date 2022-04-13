@@ -1,6 +1,6 @@
 /*
  * Author: Caleb Lochner
- * Version 0.1.0 A
+ * Version 0.1.4 A
  */
 
 #define FRechoPin 4 //Front echo pin
@@ -51,10 +51,10 @@ void loop()
 {
   Serial.println("Loop");   //Loop ID
   
-  long cmFR = detectFR();   //Distance from front
-  long cmRE = detectRE();   //Distance from Rear
-  long cmLE = detectLE();   //Distance From Left
-  long cmRI = detectRI();   //Distance from Right
+  long cmFR = detect(FRpingPin, FRechoPin);   //Distance from front
+  long cmRE = detect(REpingPin, REechoPin);   //Distance from Rear
+  long cmLE = detect(LPingPin, LechoPin);     //Distance From Left
+  long cmRI = detect(RPingPin, RechoPin);     //Distance from Right
   
   if(cmFR < 40)             //Buzz Front on/off trigger
   {
@@ -93,69 +93,18 @@ void loop()
   }
 }
 
-long detectFR()           //Front detect distance
+long detect(int ping, int echo)           //Detect distance
 {
   long duration, cm;
-  pinMode(FRpingPin, OUTPUT);
-  digitalWrite(FRpingPin, LOW);
+  pinMode(ping, OUTPUT);
+  digitalWrite(ping, LOW);
   delayMicroseconds(2);
-  digitalWrite(FRpingPin, HIGH);
+  digitalWrite(ping, HIGH);
   delayMicroseconds(10);
-  digitalWrite(FRpingPin, LOW);
-  duration = pulseIn(FRechoPin, HIGH);
+  digitalWrite(ping, LOW);
+  duration = pulseIn(echo, HIGH);
   cm = microsecondsToCentimeters(duration);
   Serial.print("Front: ");
-  Serial.print(cm);
-  Serial.println(" cm");
-  return cm;
-}
-
-long detectRE()           //Rear detect distance
-{
-  long duration, cm;
-  pinMode(REpingPin, OUTPUT);
-  digitalWrite(REpingPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(REpingPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(REpingPin, LOW);
-  duration = pulseIn(REechoPin, HIGH);
-  cm = microsecondsToCentimeters(duration);
-  Serial.print("Back: ");
-  Serial.print(cm);
-  Serial.println(" cm");
-  return cm;
-}
-
-long detectLE()           //Left detect distance
-{
-  long duration, cm;
-  pinMode(LPingPin, OUTPUT);
-  digitalWrite(LPingPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(LPingPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(LPingPin, LOW);
-  duration = pulseIn(LechoPin, HIGH);
-  cm = microsecondsToCentimeters(duration);
-  Serial.print("Back: ");
-  Serial.print(cm);
-  Serial.println(" cm");
-  return cm;
-}
-
-long detectRI()           //Right detect distance
-{
-  long duration, cm;
-  pinMode(RPingPin, OUTPUT);
-  digitalWrite(RPingPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(RPingPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(RPingPin, LOW);
-  duration = pulseIn(RechoPin, HIGH);
-  cm = microsecondsToCentimeters(duration);
-  Serial.print("Back: ");
   Serial.print(cm);
   Serial.println(" cm");
   return cm;
