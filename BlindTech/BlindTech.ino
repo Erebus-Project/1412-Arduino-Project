@@ -7,8 +7,10 @@
 #define FRpingPin 2 //Front Trigger pin
 #define REechoPin 5 //Back echo pin
 #define REpingPin 3 //Back ping pin
-#define IRLeft 10   //IR out pin left
-#define IRRight 8   //IR out pin right
+#define LPingPin 10   //Left ping pin
+
+#define RPingPin 8   //Right ping pin
+
 #define VMFront A0  //Front Vibrator motor pin
 #define VMBack A1   //Back Vibrator motor pin
 #define VMLeft A2   //Left Vibrator motor pin
