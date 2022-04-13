@@ -1,6 +1,6 @@
 /*
  * Author: Caleb Lochner
- * Version 0.0.8 A
+ * Version 0.0.9 A
  */
 
 #define FRechoPin 4 //Front echo pin
@@ -18,7 +18,9 @@ bool DEBUG = false;
 
 void setup()
 {
+  //Serial Monitor for debug purposes
   Serial.begin(9600);
+  
   //Ultrasonic Sensor pin set up
   pinMode(FRpingPin, INPUT);
   pinMode(FRechoPin, INPUT);
@@ -40,11 +42,12 @@ void setup()
 
 void loop()
 {
-  Serial.println("Loop");
-  long cmFR = detectFR();
-  long cmRE = detectRE();
+  Serial.println("Loop");   //Loop ID
+  
+  long cmFR = detectFR();   //Distance from front
+  long cmRE = detectRE();   //Distance from Rear
 
-  if(cmFR < 40)
+  if(cmFR < 40)             //Buzz Front on/off trigger
   {
     analogWrite(VMFront, buzzlevel(cmFR));
   }
@@ -53,7 +56,7 @@ void loop()
     analogWrite(VMFront, 0);
   }
   
-  if(cmRE < 40)
+  if(cmRE < 40)             //Buzz Rear on/off Trigger
   {
     analogWrite(VMBack, buzzlevel(cmRE));
   }
@@ -63,7 +66,7 @@ void loop()
   }  
 }
 
-long detectFR()
+long detectFR()           //Front detect distance
 {
   long duration, cm;
   pinMode(FRpingPin, OUTPUT);
@@ -80,7 +83,7 @@ long detectFR()
   return cm;
 }
 
-long detectRE()
+long detectRE()           //Rear detect distance
 {
   long duration, cm;
   pinMode(REpingPin, OUTPUT);
@@ -97,12 +100,12 @@ long detectRE()
   return cm;
 }
 
-long microsecondsToCentimeters(long microseconds) 
+long microsecondsToCentimeters(long microseconds) //Convert to cm 
 {
    return microseconds / 29 / 2;
 }
 
-int buzzlevel(long cm)
+int buzzlevel(long cm)            //Buzz level at vibrator motor
 {
   double BL = 0.0;
   BL = (0.057 * ( cm * cm) - (16.586 * cm) + 1072.2);
