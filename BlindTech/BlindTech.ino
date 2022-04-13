@@ -6,8 +6,9 @@
 #define FRechoPin 4 //Front echo pin
 #define FRpingPin 2 //Front Trigger pin
 #define REechoPin 5 //Back echo pin
-#define REpingPin 3 //Back ping pin
-#define LPingPin 10   //Left ping pin
+#define REpingPin 3 //Back Trigger pin
+#define LechoPin 6  //Left echo pin
+#define LPingPin 10 //Left Trigger pin
 
 #define RPingPin 8   //Right ping pin
 
