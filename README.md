@@ -7,15 +7,14 @@ Ultrasonic Sensor Pins
   Rear
     Pin 3 - Trigger Pin
     Pin 5 - Echo Pin
-    
-  IR Sensor Pins
   Left
-    Pin 10
+    Pin 7 - Trigger Pin
+    Pin 6 - Echo PIn
   Right
-    Pin 8
-   
-
-  Vibrating Motor pins
+    Pin 9 - Trigger Pin
+    Pin 8 - Echo Pin
+    
+  Vibrating motor pins
     Front
       Pin A0
     Back
