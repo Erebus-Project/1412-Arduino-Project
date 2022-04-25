@@ -1,6 +1,6 @@
 /*
  * Author: Caleb Lochner
- * Version 0.1.4 A
+ * Version 0.2.5 B
  */
 
 #define FRechoPin 4 //Front echo pin
@@ -56,41 +56,11 @@ void loop()
   long cmLE = detect(LPingPin, LechoPin);     //Distance From Left
   long cmRI = detect(RPingPin, RechoPin);     //Distance from Right
   
-  if(cmFR < 40)             //Buzz Front on/off trigger
-  {
-    analogWrite(VMFront, buzzlevel(cmFR));
-  }
-  else
-  {
-    analogWrite(VMFront, 0);
-  }
-  
-  if(cmRE < 40)             //Buzz Rear on/off Trigger
-  {
-    analogWrite(VMBack, buzzlevel(cmRE));
-  }
-  else
-  {
-    analogWrite(VMBack, 0);
-  }
-
-  if(cmLE < 40)             //Buzz Left on/off trigger
-  {
-    analogWrite(VMLeft, buzzlevel(cmLE));
-  }
-  else
-  {
-    analogWrite(VMLeft, 0);
-  }
-
-  if(cmRI < 40)             //Buzz Right on/off trigger
-  {
-    analogWrite(VMRight, buzzlevel(cmRI));
-  }
-  else
-  {
-    analogWrite(VMRight, 0);
-  }
+  analogWrite(VMFront, buzzlevel(cmFR));
+  analogWrite(VMBack, buzzlevel(cmRE));
+  analogWrite(VMLeft, buzzlevel(cmLE));
+  analogWrite(VMRight, buzzlevel(cmRI));
+  analogWrite(VMRight, 0);
 }
 
 long detect(int ping, int echo)           //Detect distance
@@ -117,9 +87,18 @@ long microsecondsToCentimeters(long microseconds) //Convert to cm
 
 int buzzlevel(long cm)            //Buzz level at vibrator motor
 {
-  double BL = 0.0;
-  BL = (0.057 * ( cm * cm) - (16.586 * cm) + 1072.2);
-  int level = (int) BL;
-  Serial.println(level);
+  int level = 0;
+  if(cm < 40)
+  {
+    double BL = 0.0;
+    BL = (0.057 * ( cm * cm) - (16.586 * cm) + 1072.2);
+    level = (int) BL;
+    Serial.println(level);
+  }
+  else
+  {
+    level = 0;
+    Serial.println(level);
+  }
   return level;
 }
