@@ -1,6 +1,6 @@
 /*
  * Author: Caleb Lochner
- * Version 0.2.5 B
+ * Version 0.2.6 B
  */
 
 #define FRechoPin 4 //Front echo pin
@@ -60,7 +60,6 @@ void loop()
   analogWrite(VMBack, buzzlevel(cmRE));
   analogWrite(VMLeft, buzzlevel(cmLE));
   analogWrite(VMRight, buzzlevel(cmRI));
-  analogWrite(VMRight, 0);
 }
 
 long detect(int ping, int echo)           //Detect distance
